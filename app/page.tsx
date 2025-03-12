@@ -8,7 +8,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "ABRA AI | Home",
+  title: "ABRA AI - Autonomous Business",
   description: "ABRA AI - Autonomous Business Robotic Assistant for efficient task automation and data management",
 };
 
