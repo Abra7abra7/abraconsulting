@@ -133,6 +133,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </ThemeProvider>
+        <Analytics/>
       </body>
     </html>
   );
