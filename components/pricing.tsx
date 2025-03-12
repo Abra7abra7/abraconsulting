@@ -26,46 +26,45 @@ export type Plan = {
 const plans: Array<Plan> = [
   {
     id: plan.hobby,
-    name: "Hobby",
+    name: "Solopreneur",
     price: 99,
-    subText: "/month",
+    subText: "/hour implementation",
     currency: "$",
     features: [
-      "Access to basic analytics reports",
-      "Up to 10,000 data points per month",
-      "Email support",
+      "Basic integration support",
+      "Consultation via email",
       "Community forum access",
-      "Cancel anytime",
+      
     ],
-    buttonText: "Get Hobby",
+    buttonText: "Get Solopreneur",
     onClick: () => {
-      console.log("Get Hobby");
+      console.log("Get Solopreneur");
     },
   },
   {
     id: plan.starter,
-    name: "Starter",
-    price: 299,
-    subText: "/month",
+    name: "Business Plan",
+    price: 399,
+    subText: "/5 hours implementation",
     currency: "$",
     featured: true,
     features: [
-      "Advanced analytics dashboard",
-      "Customizable reports and charts",
-      "Real-time data tracking",
+      "Comprehensive integration services",
+      "Customizable integration solutions",
       "Integration with third-party tools",
+      "Includes all features from the Solopreneur Plan",
     ],
-    buttonText: "Get Starter",
-    additionalFeatures: ["Everything in Hobby Plan"],
+    buttonText: "Get Business",
+    additionalFeatures: ["Everything in Solopreneur"],
     onClick: () => {
-      console.log("Get Starter");
+      console.log("Get Business");
     },
   },
   {
     id: plan.pro,
-    name: "Pro",
+    name: "Enterprise Plan",
     price: 1490,
-    subText: "/month",
+    subText: "/20 hours implementation",
     currency: "$",
     features: [
       "Unlimited data storage",
