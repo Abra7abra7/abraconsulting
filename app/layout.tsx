@@ -10,24 +10,27 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "ABRA AI | Autonomous Business Robotic Assistant",
+    default: "ABRA AI | Autonomous Business AI & MCP Protocol Solutions",
     template: "%s | ABRA AI"
   },
   description:
-    "ABRA AI is an autonomous AI-powered assistant designed for businesses to automate repetitive tasks, manage data efficiently, and support decision-making, thereby improving operational efficiency and productivity.",
+    "ABRA AI delivers cutting-edge autonomous business solutions using MCP protocol for intelligent decision making. Serving Slovakia and Central Europe with AI-powered business automation that transforms operations and productivity.",
   keywords: [
-    "AI assistant", 
+    "AI autonomous business", 
+    "MCP protocol", 
+    "decision making",
     "business automation", 
-    "robotic assistant", 
-    "productivity tools", 
     "AI for business", 
-    "data management", 
-    "decision support", 
+    "Slovakia AI solutions",
+    "Central Europe business automation",
+    "autonomous AI",
+    "intelligent decision support", 
     "operational efficiency",
     "artificial intelligence",
     "business solutions",
     "workflow automation",
-    "enterprise AI"
+    "enterprise AI",
+    "AI consulting Slovakia"
   ],
   authors: [{ name: "ABRA AI", url: "https://www.abraconsulting.xyz" }],
   creator: "ABRA AI",
@@ -42,11 +45,15 @@ export const metadata: Metadata = {
     canonical: "/",
     languages: {
       'en-US': '/en-US',
+      'sk-SK': '/sk-SK',
+      'cs-CZ': '/cs-CZ',
+      'hu-HU': '/hu-HU',
+      'pl-PL': '/pl-PL',
     },
   },
   openGraph: {
-    title: "ABRA AI | Autonomous Business Robotic Assistant",
-    description: "AI-powered assistant designed for businesses to automate tasks, manage data, and support decision-making",
+    title: "ABRA AI | Autonomous Business AI & MCP Protocol Solutions",
+    description: "Leading AI autonomous business solutions with MCP protocol for intelligent decision making in Slovakia and Central Europe",
     url: "https://www.abraconsulting.xyz",
     siteName: "ABRA AI",
     images: [
@@ -62,8 +69,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ABRA AI | Autonomous Business Robotic Assistant",
-    description: "AI-powered assistant designed for businesses to automate tasks, manage data, and support decision-making",
+    title: "ABRA AI | Autonomous Business AI & MCP Protocol Solutions",
+    description: "Leading AI autonomous business solutions with MCP protocol for intelligent decision making in Slovakia and Central Europe",
     images: ["/og-image.jpg"],
     creator: "@abraai",
     site: "@abraai",
@@ -80,7 +87,8 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "google-site-verification-code", // Replace with actual verification code when available
+    google: "google-site-verification-code", // TODO: Replace with actual verification code from Google Search Console
+    // Note: For other search engines like Yandex and Bing, add meta tags in the head section
   },
   category: "technology",
 };
@@ -92,6 +100,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Additional verification meta tags for other search engines */}
+        <meta name="yandex-verification" content="yandex-verification-code" /> {/* TODO: Replace with actual code */}
+        <meta name="msvalidate.01" content="bing-verification-code" /> {/* TODO: Replace with actual code */}
+        
+        {/* Preconnect to important domains to improve performance */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Favicon tags for better cross-platform support */}
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+      </head>
       <body
         className={cn("antialiased dark:bg-black bg-white", inter.className)}
       >
@@ -101,8 +124,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          {/* Skip to content link for accessibility */}
+          <a href="#main-content" className="sr-only focus:not-sr-only">Skip to content</a>
           <Navbar />
-          {children}
+          <main id="main-content">
+            {children}
+          </main>
           <Footer />
         </ThemeProvider>
       </body>
