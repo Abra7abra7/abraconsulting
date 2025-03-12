@@ -2,9 +2,9 @@ import { Login } from "@/components/login";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Signup | Aceternity Template",
+  title: "Login | ABRA AI Consulting",
   description:
-    "Startup landing is a simple one page landing page for startups and agencies. Built with Next.js, Tailwind CSS, TypeScript and framer motion.",
+    "Log in to your ABRA AI account to access our AI-powered business assistant and automation tools.",
 };
 
 export default function LoginPage() {
