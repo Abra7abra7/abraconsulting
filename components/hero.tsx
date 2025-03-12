@@ -105,7 +105,7 @@ export function Hero() {
         transition={{ duration: 0.2, delay: 0.5 }}
         className="relative z-20 mx-auto mt-4 max-w-lg px-4 text-center text-base/6 text-gray-600 dark:text-gray-200"
       >
-        With ABRA AI's state-of-the-art, cutting-edge AI technology, 
+        With ABRA AI&apos;s state-of-the-art, cutting-edge AI technology, 
         you can start your journey to autonomous operations in seconds.
       </motion.p>
       <motion.div
@@ -242,7 +242,7 @@ const CollisionMechanism = React.forwardRef<
     const animationInterval = setInterval(checkCollision, 50);
 
     return () => clearInterval(animationInterval);
-  }, [cycleCollisionDetected, containerRef]);
+  }, [cycleCollisionDetected, containerRef, parentRef]);
 
   useEffect(() => {
     if (collision.detected && collision.coordinates) {
