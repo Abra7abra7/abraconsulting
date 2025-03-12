@@ -120,22 +120,23 @@ export default function RootLayout({
       <body
         className={cn("antialiased dark:bg-black bg-white", inter.className)}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {/* Skip to content link for accessibility */}
-          <a href="#main-content" className="sr-only focus:not-sr-only">Skip to content</a>
-          <Navbar />
-          <main id="main-content">
-            {children}
-          </main>
-          <Footer />
-        </ThemeProvider>
-        <Analytics/>
-        <AptabaseProvider appKey="A-EU-2774041550">{children}</AptabaseProvider>
+        <AptabaseProvider appKey="A-EU-2774041550">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {/* Skip to content link for accessibility */}
+            <a href="#main-content" className="sr-only focus:not-sr-only">Skip to content</a>
+            <Navbar />
+            <main id="main-content">
+              {children}
+            </main>
+            <Footer />
+          </ThemeProvider>
+          <Analytics/>
+        </AptabaseProvider>
       </body>
     </html>
   );
