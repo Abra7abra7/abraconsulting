@@ -134,23 +134,33 @@ export function Hero() {
           Book a call
         </Button>
       </motion.div>
-      <motion.div
+      {/* <motion.div
+        // Initial state of the motion div with opacity 0 and y position 20
         initial={{ opacity: 0, y: 20 }}
+        // Animation state of the motion div with opacity 1 and y position 0
         animate={{ opacity: 1, y: 0 }}
+        // Transition settings for the animation
         transition={{ duration: 0.4, delay: 0.9, ease: "easeOut" }}
+        // Reference to the container div
         ref={containerRef}
+        // CSS classes for styling the container div
         className="relative mx-auto max-w-7xl rounded-[32px] border border-neutral-200/50 bg-neutral-100 p-2 backdrop-blur-lg dark:border-neutral-700 dark:bg-neutral-800/50 md:p-4"
       >
         <div className="rounded-[24px] border border-neutral-200 bg-white p-2 dark:border-neutral-700 dark:bg-black">
           <Image
+            // Source URL of the image
             src="https://assets.aceternity.com/pro/dashboard-new.webp"
+            // Alt text for the image
             alt="header"
+            // Width of the image
             width={1920}
+            // Height of the image
             height={1080}
+            // CSS class for styling the image
             className="rounded-[20px]"
           />
         </div>
-      </motion.div>
+      </motion.div> */}
     </div>
   );
 }
