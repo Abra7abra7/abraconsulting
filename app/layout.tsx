@@ -9,9 +9,9 @@ import { ThemeProvider } from "@/context/providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Startup Landing | Aceternity Template",
+  title: "ABRA AI | Autonomous Bussiness Robotic Assistant",
   description:
-    "Startup landing is a simple one page landing page for startups and agencies. Built with Next.js, Tailwind CSS, TypeScript and framer motion.",
+    "ABRA AI is an autonomous AI-powered assistant designed for businesses to automate repetitive tasks. manage data efficiently, and support decision-making, thereby improving operational efficiency and productivity.",
 };
 
 export default function RootLayout({
