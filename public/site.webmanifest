@@ -1,0 +1,28 @@
+{
+  "name": "ABRA AI - Autonomous Business AI & MCP Protocol Solutions",
+  "short_name": "ABRA AI",
+  "description": "ABRA AI delivers cutting-edge autonomous business solutions using MCP protocol for intelligent decision making in Slovakia and Central Europe",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "lang": "en-US",
+  "dir": "ltr",
+  "orientation": "portrait-primary",
+  "categories": ["business", "productivity", "ai", "technology"],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
