@@ -37,13 +37,12 @@ export function CTA() {
       <div className="max-w-7xl mx-auto 0 flex flex-col md:flex-row justify-between items-center w-full">
         <div className="flex flex-col">
           <motion.h2 className="text-black dark:text-white text-xl text-center md:text-left md:text-3xl font-bold mx-auto md:mx-0 max-w-xl ">
-            Host your websites <br />
-            with zero friction today.
+            One Click Automation <br />
+            Set up your business automation in seconds.
           </motion.h2>
           <p className="max-w-md mt-8 text-center md:text-left text-sm md:text-base mx-auto md:mx-0 text-neutral-600 dark:text-neutral-400">
-            Experience lightning-fast hosting with unparalleled reliability. Our
-            cutting-edge infrastructure ensures your website stays online 24/7,
-            with 99.9% uptime guaranteed.
+          Easily manage your business operations with our intuitive workflow,
+           no complex steps required.
           </p>
           <FeaturedImages
             textClassName="lg:text-left text-center"

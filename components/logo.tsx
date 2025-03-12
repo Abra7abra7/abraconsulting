@@ -14,7 +14,7 @@ export const Logo = () => {
         width={30}
         height={30}
       />
-      <span className="font-medium text-black dark:text-white">Startup</span>
+      <span className="font-medium text-black dark:text-white">ABRA AI</span>
     </Link>
   );
 };

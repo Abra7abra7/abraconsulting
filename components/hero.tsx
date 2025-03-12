@@ -72,7 +72,7 @@ export function Hero() {
       <div className="text-balance relative z-20 mx-auto mb-4 mt-4 max-w-4xl text-center text-3xl font-semibold tracking-tight text-gray-700 dark:text-neutral-300 md:text-7xl">
         <Balancer>
           <motion.h2>
-            {"Deploy your website in seconds, not hours."
+            {"Automate your business in seconds, not hours."
               .split(" ")
               .map((word, index) => (
                 <motion.span
@@ -105,8 +105,8 @@ export function Hero() {
         transition={{ duration: 0.2, delay: 0.5 }}
         className="relative z-20 mx-auto mt-4 max-w-lg px-4 text-center text-base/6 text-gray-600 dark:text-gray-200"
       >
-        With our state of the art, cutting edge, we are so back kinda hosting
-        services, you can deploy your website in seconds.
+        With ABRA AI's state-of-the-art, cutting-edge AI technology, 
+        you can start your journey to autonomous operations in seconds.
       </motion.p>
       <motion.div
         initial={{ opacity: 0, y: 10 }}

@@ -14,11 +14,11 @@ export function Features() {
     >
       <Header>
         <h2 className="font-sans text-bold text-xl text-center md:text-4xl w-fit mx-auto font-bold tracking-tight text-neutral-8000 dark:text-neutral-100 text-neutral-800">
-          Deployments made easy
+          Automation made easy
         </h2>
       </Header>
       <p className="max-w-lg text-sm text-neutral-600 text-center mx-auto mt-4 dark:text-neutral-400">
-        Deploy with ease, leave complexities to us.
+        Automate with ease, leave complexities to us.
       </p>
       <div className="mt-20  grid cols-1 md:grid-cols-5 gap-4 md:auto-rows-[25rem] max-w-7xl mx-auto">
         <Card className="flex flex-col justify-between md:col-span-3">
@@ -26,9 +26,9 @@ export function Features() {
             <SkeletonOne />
           </CardSkeletonBody>
           <CardContent className="h-40">
-            <CardTitle>One click deploy</CardTitle>
+            <CardTitle>One click automation</CardTitle>
             <CardDescription>
-              Deploy your app in seconds, with our one click deploy feature.
+            Emphasize setting up automation quickly.
             </CardDescription>
           </CardContent>
         </Card>
@@ -37,8 +37,7 @@ export function Features() {
           <CardContent className="h-40">
             <CardTitle>Intuitive workflow</CardTitle>
             <CardDescription>
-              With our intuitive workflow, you can easily manage your app
-              without complex steps.
+            Adjusted to manage business operations instead of an app
             </CardDescription>
           </CardContent>
           <CardSkeletonBody>
@@ -68,10 +67,9 @@ export function Features() {
         </Card>
         <Card className="flex flex-col justify-between md:col-span-3">
           <CardContent className="h-40">
-            <CardTitle>Running out of copy</CardTitle>
+            <CardTitle>Need inspiration?</CardTitle>
             <CardDescription>
-              You are running out of copy for your website, we can generate copy
-              for you.
+            To align with generating valuable business insights rather than website text.
             </CardDescription>
           </CardContent>
           <CardSkeletonBody>
