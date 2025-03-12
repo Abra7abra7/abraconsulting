@@ -35,7 +35,7 @@ export function TermsOfService() {
 
           <h2 className="text-2xl font-semibold mt-8 mb-4">3. User Content</h2>
           <p>
-            In these terms and conditions, "User Content" means material (including without limitation text, images, audio material, video material and audio-visual material) that you submit to this website, for whatever purpose.
+            In these terms and conditions, &quot;User Content&quot; means material (including without limitation text, images, audio material, video material and audio-visual material) that you submit to this website, for whatever purpose.
           </p>
           <p>
             You grant to ABRA AI Consulting a worldwide, irrevocable, non-exclusive, royalty-free license to use, reproduce, adapt, publish, translate and distribute your User Content in any existing or future media. You also grant to ABRA AI Consulting the right to sub-license these rights, and the right to bring an action for infringement of these rights.
@@ -43,7 +43,7 @@ export function TermsOfService() {
 
           <h2 className="text-2xl font-semibold mt-8 mb-4">4. Limitation of Liability</h2>
           <p>
-            The information on this website is provided on an "as is" basis. To the fullest extent permitted by law, ABRA AI Consulting:
+            The information on this website is provided on an &quot;as is&quot; basis. To the fullest extent permitted by law, ABRA AI Consulting:
           </p>
           <ul className="list-disc pl-6 my-4">
             <li>excludes all representations and warranties relating to this website and its contents or which is or may be provided by any affiliates or any other third party, including in relation to any inaccuracies or omissions in this website and/or the Company&apos;s literature; and</li>
