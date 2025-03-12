@@ -29,15 +29,7 @@ export default function Home() {
       <LocalBusinessJsonLd />
       <main className="">
         <Hero />
-        <section className="py-8 px-4 max-w-7xl mx-auto text-center">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            AI Autonomous Business Solutions with MCP Protocol
-          </h1>
-          <p className="text-lg mb-6 max-w-3xl mx-auto">
-            ABRA AI delivers cutting-edge autonomous business solutions using MCP protocol for intelligent decision making.
-            Serving Slovakia and Central Europe with AI-powered business automation that transforms operations and productivity.
-          </p>
-        </section>
+       
         <Features />
         <Pricing />
         <CTA />
