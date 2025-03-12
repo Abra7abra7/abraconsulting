@@ -6,6 +6,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/context/providers";
 import { Analytics } from "@vercel/analytics/react"
+import { AptabaseProvider } from '@aptabase/react';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -134,6 +135,7 @@ export default function RootLayout({
           <Footer />
         </ThemeProvider>
         <Analytics/>
+        <AptabaseProvider appKey="A-EU-2774041550">{children}</AptabaseProvider>
       </body>
     </html>
   );
