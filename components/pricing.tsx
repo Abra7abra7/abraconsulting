@@ -76,7 +76,7 @@ const plans: Array<Plan> = [
     additionalFeatures: ["Everything in Hobby Plan", "Everything in Pro Plan"],
     buttonText: "Get Pro",
     onClick: () => {
-      console.log("Get Pro");
+      console.log("Get Enterprise");
     },
   },
 ];
