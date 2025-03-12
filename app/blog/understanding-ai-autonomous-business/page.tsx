@@ -42,7 +42,7 @@ export default function BlogPost() {
         <div className="mt-8">
           <h2>The Evolution of AI in Business Automation</h2>
           <p>
-            In today's rapidly evolving business landscape, <strong>AI autonomous business</strong> solutions are no longer a futuristic concept but a present reality transforming operations across Central Europe. Companies in Slovakia, Czech Republic, Hungary, and Poland are increasingly adopting these technologies to stay competitive in the global market.
+            In today&apos;s rapidly evolving business landscape, <strong>AI autonomous business</strong> solutions are no longer a futuristic concept but a present reality transforming operations across Central Europe. Companies in Slovakia, Czech Republic, Hungary, and Poland are increasingly adopting these technologies to stay competitive in the global market.
           </p>
           
           <p>
