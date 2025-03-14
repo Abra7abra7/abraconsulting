@@ -15,6 +15,8 @@ export const metadata: Metadata = {
     default: "ABRA AI | Autonomous Business AI & MCP Protocol Solutions",
     template: "%s | ABRA AI"
   },
+   
+  
   description:
     "ABRA AI delivers cutting-edge autonomous business solutions using MCP protocol for intelligent decision making. Serving Slovakia and Central Europe with AI-powered business automation that transforms operations and productivity.",
   keywords: [
@@ -89,7 +91,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "google-site-verification-code", // TODO: Replace with actual verification code from Google Search Console
+    google: "7k2zEjTjgiSSaP2wa8rWewLum8fGA8opfHVg0eD7Hic",
     // Note: For other search engines like Yandex and Bing, add meta tags in the head section
   },
   category: "technology",
@@ -103,6 +105,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Google site verification */}
+        <meta name="google-site-verification" content="7k2zEjTjgiSSaP2wa8rWewLum8fGA8opfHVg0eD7Hic" />
+        
         {/* Additional verification meta tags for other search engines */}
         <meta name="yandex-verification" content="yandex-verification-code" /> {/* TODO: Replace with actual code */}
         <meta name="msvalidate.01" content="bing-verification-code" /> {/* TODO: Replace with actual code */}
