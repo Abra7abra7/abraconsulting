@@ -19,15 +19,42 @@ interface NavbarProps {
   navItems: {
     name: string;
     link: string;
+    hasDropdown?: boolean;
+    dropdownItems?: {
+      name: string;
+      link: string;
+    }[];
   }[];
   visible: boolean;
 }
 
 export const Navbar = () => {
+  // Feature items for dropdown
+  const featureItems = [
+    {
+      name: "One-Click Automation",
+      link: "/features/one-click-automation",
+    },
+    {
+      name: "Intuitive Workflow",
+      link: "/features/intuitive-workflow",
+    },
+    {
+      name: "Edge Hosting",
+      link: "/features/edge-hosting",
+    },
+    {
+      name: "Business Insights",
+      link: "/features/business-insights",
+    },
+  ];
+
   const navItems = [
     {
       name: "Features",
       link: "/features",
+      hasDropdown: true,
+      dropdownItems: featureItems,
     },
     {
       name: "Pricing",
@@ -68,6 +95,7 @@ export const Navbar = () => {
 
 const DesktopNav = ({ navItems, visible }: NavbarProps) => {
   const [hovered, setHovered] = useState<number | null>(null);
+  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
 
   const calOptions = useCalEmbed({
     namespace: CONSTANTS.CALCOM_NAMESPACE,
@@ -109,20 +137,57 @@ const DesktopNav = ({ navItems, visible }: NavbarProps) => {
       <Logo />
       <motion.div className="lg:flex flex-row flex-1 absolute inset-0 hidden items-center justify-center space-x-2 lg:space-x-2 text-sm text-zinc-600 font-medium hover:text-zinc-800 transition duration-200">
         {navItems.map((navItem: any, idx: number) => (
-          <Link
-            onMouseEnter={() => setHovered(idx)}
-            className="text-neutral-600 dark:text-neutral-300 relative px-4 py-2"
+          <div 
             key={`link=${idx}`}
-            href={navItem.link}
+            className="relative"
+            onMouseEnter={() => {
+              setHovered(idx);
+              if (navItem.hasDropdown) {
+                setOpenDropdown(idx);
+              }
+            }}
+            onMouseLeave={() => {
+              if (navItem.hasDropdown) {
+                setOpenDropdown(null);
+              }
+            }}
           >
-            {hovered === idx && (
+            <Link
+              className="text-neutral-600 dark:text-neutral-300 relative px-4 py-2 flex items-center"
+              href={navItem.link}
+            >
+              {hovered === idx && (
+                <motion.div
+                  layoutId="hovered"
+                  className="w-full h-full absolute inset-0 bg-gray-100 dark:bg-neutral-800 rounded-full"
+                />
+              )}
+              <span className="relative z-20">{navItem.name}</span>
+              {navItem.hasDropdown && (
+                <span className={`relative z-20 ml-1 text-xs transition-transform duration-200 ${openDropdown === idx ? 'rotate-180' : ''}`}>▼</span>
+              )}
+            </Link>
+            
+            {/* Dropdown Menu */}
+            {navItem.hasDropdown && openDropdown === idx && (
               <motion.div
-                layoutId="hovered"
-                className="w-full h-full absolute inset-0 bg-gray-100 dark:bg-neutral-800 rounded-full"
-              />
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="absolute top-full left-0 mt-1 bg-white dark:bg-neutral-900 rounded-lg shadow-lg overflow-hidden z-50 min-w-[200px]"
+              >
+                {navItem.dropdownItems?.map((item: { name: string; link: string }, itemIdx: number) => (
+                  <Link
+                    key={`dropdown-${idx}-${itemIdx}`}
+                    href={item.link}
+                    className="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-300 hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </motion.div>
             )}
-            <span className="relative z-20">{navItem.name}</span>
-          </Link>
+          </div>
         ))}
       </motion.div>
       <div className="flex items-center gap-4">
@@ -238,14 +303,31 @@ const MobileNav = ({ navItems, visible }: NavbarProps) => {
               className="flex rounded-lg absolute top-16 bg-white dark:bg-neutral-950 inset-x-0 z-50 flex-col items-start justify-start gap-4 w-full px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
             >
               {navItems.map((navItem: any, idx: number) => (
-                <Link
-                  key={`link=${idx}`}
-                  href={navItem.link}
-                  onClick={() => setOpen(false)}
-                  className="relative text-neutral-600 dark:text-neutral-300"
-                >
-                  <motion.span className="block">{navItem.name} </motion.span>
-                </Link>
+                <div key={`link=${idx}`} className="w-full">
+                  <Link
+                    href={navItem.link}
+                    onClick={() => setOpen(false)}
+                    className="relative text-neutral-600 dark:text-neutral-300"
+                  >
+                    <motion.span className="block">{navItem.name}</motion.span>
+                  </Link>
+                  
+                  {/* Nested Feature Items */}
+                  {navItem.hasDropdown && navItem.dropdownItems && (
+                    <div className="pl-4 mt-2 border-l-2 border-gray-200 dark:border-gray-700 space-y-2">
+                      {navItem.dropdownItems.map((item: { name: string; link: string }, itemIdx: number) => (
+                        <Link
+                          key={`mobile-dropdown-${idx}-${itemIdx}`}
+                          href={item.link}
+                          onClick={() => setOpen(false)}
+                          className="block text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-200"
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
               <Button
                 as={Link}

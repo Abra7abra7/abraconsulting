@@ -6,7 +6,7 @@ import { FeaturesCollectionJsonLd } from "@/components/features-json-ld";
 
 export const metadata: Metadata = {
   title: "AI Autonomous Business Features | ABRA AI",
-  description: "Explore ABRA AI's comprehensive suite of autonomous business features including one-click automation, intuitive workflow, edge hosting, and AI-powered business insights.",
+  description: "Explore ABRA AI&apos;s comprehensive suite of autonomous business features including one-click automation, intuitive workflow, edge hosting, and AI-powered business insights.",
   keywords: [
     "AI business features", 
     "autonomous business tools", 
@@ -83,7 +83,7 @@ export default function FeaturesPage() {
       <div className="text-center mb-16">
         <h1 className="text-4xl font-bold mb-4">AI Autonomous Business Features</h1>
         <p className="text-xl max-w-3xl mx-auto text-neutral-600 dark:text-neutral-400">
-          Discover how ABRA AI's comprehensive suite of features can transform your business operations with intelligent automation and MCP protocol integration.
+          Discover how ABRA AI&apos;s comprehensive suite of features can transform your business operations with intelligent automation and MCP protocol integration.
         </p>
       </div>
 
@@ -167,7 +167,7 @@ export default function FeaturesPage() {
       <div className="text-center">
         <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Business?</h2>
         <p className="text-lg max-w-2xl mx-auto mb-8 text-neutral-600 dark:text-neutral-400">
-          Discover how ABRA AI's autonomous business features can help your organization achieve new levels of efficiency and innovation.
+          Discover how ABRA AI&apos;s autonomous business features can help your organization achieve new levels of efficiency and innovation.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button 
