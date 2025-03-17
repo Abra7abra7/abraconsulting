@@ -15,53 +15,31 @@ import {
 import { BsStarFill } from "react-icons/bs";
 import { HiArrowRight } from "react-icons/hi2";
 import { cn } from "@/lib/utils";
-import { useCalEmbed } from "@/app/hooks/useCalEmbed";
+import { OptimizedCalEmbed } from "./optimized-cal-embed";
 import { CONSTANTS } from "@/constants/links";
 
 export function CTA() {
-  const calOptions = useCalEmbed({
-    namespace: CONSTANTS.CALCOM_NAMESPACE,
-    styles: {
-      branding: {
-        brandColor: CONSTANTS.CALCOM_BRAND_COLOR,
-      },
-    },
-    hideEventTypeDetails: CONSTANTS.CALCOM_HIDE_EVENT_TYPE_DETAILS,
-    layout: CONSTANTS.CALCOM_LAYOUT,
-  });
   return (
-    <div
-      id="contact"
-      className=" px-4  w-full md:px-8 bg-white dark:bg-neutral-950 py-20"
-    >
-      <div className="max-w-7xl mx-auto 0 flex flex-col md:flex-row justify-between items-center w-full">
-        <div className="flex flex-col">
-          <motion.h2 className="text-black dark:text-white text-xl text-center md:text-left md:text-3xl font-bold mx-auto md:mx-0 max-w-xl ">
-            One Click Automation <br />
-            Set up your business automation in seconds.
-          </motion.h2>
-          <p className="max-w-md mt-8 text-center md:text-left text-sm md:text-base mx-auto md:mx-0 text-neutral-600 dark:text-neutral-400">
-          Easily manage your business operations with our intuitive workflow,
-           no complex steps required.
-          </p>
-          <FeaturedImages
-            textClassName="lg:text-left text-center"
-            className="lg:justify-start justify-start items-center"
-            containerClassName="md:items-start"
-            showStars
-          />
+    <section className="w-full py-20 px-4 md:px-8 bg-white dark:bg-neutral-950">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div className="space-y-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-neutral-800 dark:text-neutral-100">
+              Ready to transform your business with AI?
+            </h2>
+            <p className="text-neutral-600 dark:text-neutral-400">
+              Schedule a consultation with our experts to discuss how our AI solutions can help your business.
+            </p>
+            <div className="pt-4">
+              <FeaturedImages showStars={true} />
+            </div>
+          </div>
+          <div className="h-[600px] rounded-xl overflow-hidden">
+            <OptimizedCalEmbed />
+          </div>
         </div>
-        <button
-          data-cal-namespace={calOptions.namespace}
-          data-cal-link={CONSTANTS.CALCOM_LINK}
-          data-cal-config={`{"layout":"${calOptions.layout}"}`}
-          className="flex space-x-2 items-center group text-base px-4 py-2 rounded-lg bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]"
-        >
-          <span>Book a call</span>
-          <HiArrowRight className="text-white group-hover:translate-x-1 stroke-[1px] h-3 w-3 mt-0.5 transition-transform duration-200" />
-        </button>
       </div>
-    </div>
+    </section>
   );
 }
 
