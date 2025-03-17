@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, memo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -8,6 +8,10 @@ import Link from "next/link";
 import { Button } from "./button";
 import { useCalEmbed } from "@/app/hooks/useCalEmbed";
 import { CONSTANTS } from "@/constants/links";
+
+// Memoize static components to prevent unnecessary re-renders
+const MemoizedBackgroundGrids = memo(BackgroundGrids);
+const MemoizedExplosion = memo(Explosion);
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -22,12 +26,15 @@ export function Hero() {
     hideEventTypeDetails: CONSTANTS.CALCOM_HIDE_EVENT_TYPE_DETAILS,
     layout: CONSTANTS.CALCOM_LAYOUT,
   });
+  
   return (
     <div
       ref={parentRef}
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-20 md:px-8 md:py-40 bg-neutral-50 dark:bg-neutral-900"
     >
-      <BackgroundGrids />
+      <MemoizedBackgroundGrids />
+      
+      {/* Reduce number of collision mechanisms for mobile */}
       <CollisionMechanism
         beamOptions={{
           initialX: -400,
@@ -38,87 +45,60 @@ export function Hero() {
         containerRef={containerRef}
         parentRef={parentRef}
       />
-      <CollisionMechanism
-        beamOptions={{
-          initialX: -200,
-          translateX: 800,
-          duration: 4,
-          repeatDelay: 3,
-        }}
-        containerRef={containerRef}
-        parentRef={parentRef}
-      />
-      <CollisionMechanism
-        beamOptions={{
-          initialX: 200,
-          translateX: 1200,
-          duration: 5,
-          repeatDelay: 3,
-        }}
-        containerRef={containerRef}
-        parentRef={parentRef}
-      />
-      <CollisionMechanism
-        containerRef={containerRef}
-        parentRef={parentRef}
-        beamOptions={{
-          initialX: 400,
-          translateX: 1400,
-          duration: 6,
-          repeatDelay: 3,
-        }}
-      />
+      
+      {/* Only show additional animations on desktop */}
+      <div className="hidden md:block">
+        <CollisionMechanism
+          beamOptions={{
+            initialX: -200,
+            translateX: 800,
+            duration: 4,
+            repeatDelay: 3,
+          }}
+          containerRef={containerRef}
+          parentRef={parentRef}
+        />
+        <CollisionMechanism
+          beamOptions={{
+            initialX: 200,
+            translateX: 1200,
+            duration: 5,
+            repeatDelay: 3,
+          }}
+          containerRef={containerRef}
+          parentRef={parentRef}
+        />
+        <CollisionMechanism
+          containerRef={containerRef}
+          parentRef={parentRef}
+          beamOptions={{
+            initialX: 400,
+            translateX: 1400,
+            duration: 6,
+            repeatDelay: 3,
+          }}
+        />
+      </div>
 
       <div className="text-balance relative z-20 mx-auto mb-4 mt-4 max-w-4xl text-center text-3xl font-semibold tracking-tight text-gray-700 dark:text-neutral-300 md:text-7xl">
         <Balancer>
-          <motion.h2>
-            {"Automate your business in seconds, not hours."
-              .split(" ")
-              .map((word, index) => (
-                <motion.span
-                  initial={{
-                    filter: "blur(10px)",
-                    opacity: 0,
-                    y: 10,
-                  }}
-                  animate={{
-                    filter: "blur(0px)",
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    duration: 0.4,
-                    delay: index * 0.05,
-                  }}
-                  className="inline-block"
-                  key={index}
-                >
-                  {word}&nbsp;
-                </motion.span>
-              ))}
-          </motion.h2>
+          <h2 className="animate-fade-in">
+            Automate your business in seconds, not hours.
+          </h2>
         </Balancer>
       </div>
-      <motion.p
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2, delay: 0.5 }}
-        className="relative z-20 mx-auto mt-4 max-w-lg px-4 text-center text-base/6 text-gray-600 dark:text-gray-200"
-      >
+      
+      <p className="relative z-20 mx-auto mt-4 max-w-lg px-4 text-center text-base/6 text-gray-600 dark:text-gray-200 animate-fade-in-delayed">
         With ABRA AI&apos;s state-of-the-art, cutting-edge AI technology, 
         you can start your journey to autonomous operations in seconds.
-      </motion.p>
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2, delay: 0.7 }}
-        className="mb-10 mt-8 flex w-full flex-col items-center justify-center gap-4 px-8 sm:flex-row md:mb-20"
-      >
+      </p>
+      
+      <div className="mb-10 mt-8 flex w-full flex-col items-center justify-center gap-4 px-8 sm:flex-row md:mb-20 animate-fade-in-delayed">
         <Button
           as={Link}
           href="/login"
           variant="dark"
-          className="hidden md:block w-40 text-center"
+          className="w-40 text-center"
         >
           Create account
         </Button>
@@ -129,43 +109,16 @@ export function Hero() {
           data-cal-config={`{"layout":"${calOptions.layout}"}`}
           as="button"
           variant="primary"
-          className="hidden md:block w-40"
+          className="w-40"
         >
           Book a call
         </Button>
-      </motion.div>
-      {/* <motion.div
-        // Initial state of the motion div with opacity 0 and y position 20
-        initial={{ opacity: 0, y: 20 }}
-        // Animation state of the motion div with opacity 1 and y position 0
-        animate={{ opacity: 1, y: 0 }}
-        // Transition settings for the animation
-        transition={{ duration: 0.4, delay: 0.9, ease: "easeOut" }}
-        // Reference to the container div
-        ref={containerRef}
-        // CSS classes for styling the container div
-        className="relative mx-auto max-w-7xl rounded-[32px] border border-neutral-200/50 bg-neutral-100 p-2 backdrop-blur-lg dark:border-neutral-700 dark:bg-neutral-800/50 md:p-4"
-      >
-        <div className="rounded-[24px] border border-neutral-200 bg-white p-2 dark:border-neutral-700 dark:bg-black">
-          <Image
-            // Source URL of the image
-            src="https://assets.aceternity.com/pro/dashboard-new.webp"
-            // Alt text for the image
-            alt="header"
-            // Width of the image
-            width={1920}
-            // Height of the image
-            height={1080}
-            // CSS class for styling the image
-            className="rounded-[20px]"
-          />
-        </div>
-      </motion.div> */}
+      </div>
     </div>
   );
 }
 
-const BackgroundGrids = () => {
+function BackgroundGrids() {
   return (
     <div className="pointer-events-none absolute inset-0 z-0 grid h-full w-full -rotate-45 transform select-none grid-cols-2 gap-10 md:grid-cols-4">
       <div className="relative h-full w-full">
@@ -186,9 +139,10 @@ const BackgroundGrids = () => {
       </div>
     </div>
   );
-};
+}
 
-const CollisionMechanism = React.forwardRef<
+// Optimize collision mechanism with throttling and reduced calculations
+const CollisionMechanism = memo(React.forwardRef<
   HTMLDivElement,
   {
     containerRef: React.RefObject<HTMLDivElement>;
@@ -215,20 +169,31 @@ const CollisionMechanism = React.forwardRef<
     coordinates: null,
   });
   const [beamKey, setBeamKey] = useState(0);
-  const [cycleCollisionDetected, setCycleCollisionDetected] = useState(false);
+  
+  // Use a ref to track collision state to avoid unnecessary re-renders
+  const collisionDetectedRef = useRef(false);
 
   useEffect(() => {
+    // Throttle collision detection to reduce CPU usage
+    let lastCheck = 0;
+    const THROTTLE_MS = 100; // Check only every 100ms instead of 50ms
+    
     const checkCollision = () => {
+      const now = Date.now();
+      if (now - lastCheck < THROTTLE_MS) return;
+      lastCheck = now;
+      
       if (
         beamRef.current &&
         containerRef.current &&
         parentRef.current &&
-        !cycleCollisionDetected
+        !collisionDetectedRef.current
       ) {
         const beamRect = beamRef.current.getBoundingClientRect();
         const containerRect = containerRef.current.getBoundingClientRect();
         const parentRect = parentRef.current.getBoundingClientRect();
 
+        // Simple bounding box check before detailed collision
         if (beamRect.bottom >= containerRect.top) {
           const relativeX =
             beamRect.left - parentRect.left + beamRect.width / 2;
@@ -241,7 +206,7 @@ const CollisionMechanism = React.forwardRef<
               y: relativeY,
             },
           });
-          setCycleCollisionDetected(true);
+          collisionDetectedRef.current = true;
           if (beamRef.current) {
             beamRef.current.style.opacity = "0";
           }
@@ -249,26 +214,25 @@ const CollisionMechanism = React.forwardRef<
       }
     };
 
-    const animationInterval = setInterval(checkCollision, 50);
-
+    const animationInterval = setInterval(checkCollision, THROTTLE_MS);
     return () => clearInterval(animationInterval);
-  }, [cycleCollisionDetected, containerRef, parentRef]);
+  }, [containerRef, parentRef]);
 
   useEffect(() => {
     if (collision.detected && collision.coordinates) {
-      setTimeout(() => {
+      const resetTimer = setTimeout(() => {
         setCollision({ detected: false, coordinates: null });
-        setCycleCollisionDetected(false);
+        collisionDetectedRef.current = false;
         // Set beam opacity to 0
         if (beamRef.current) {
           beamRef.current.style.opacity = "1";
         }
-      }, 2000);
-
-      // Reset the beam animation after a delay
-      setTimeout(() => {
+        
+        // Reset the beam animation after a delay
         setBeamKey((prevKey) => prevKey + 1);
       }, 2000);
+      
+      return () => clearTimeout(resetTimer);
     }
   }, [collision]);
 
@@ -277,18 +241,15 @@ const CollisionMechanism = React.forwardRef<
       <motion.div
         key={beamKey}
         ref={beamRef}
-        animate="animate"
         initial={{
           translateY: beamOptions.initialY || "-200px",
           translateX: beamOptions.initialX || "0px",
           rotate: beamOptions.rotate || -45,
         }}
-        variants={{
-          animate: {
-            translateY: beamOptions.translateY || "800px",
-            translateX: beamOptions.translateX || "700px",
-            rotate: beamOptions.rotate || -45,
-          },
+        animate={{
+          translateY: beamOptions.translateY || "800px",
+          translateX: beamOptions.translateX || "700px",
+          rotate: beamOptions.rotate || -45,
         }}
         transition={{
           duration: beamOptions.duration || 8,
@@ -305,9 +266,8 @@ const CollisionMechanism = React.forwardRef<
       />
       <AnimatePresence>
         {collision.detected && collision.coordinates && (
-          <Explosion
+          <MemoizedExplosion
             key={`${collision.coordinates.x}-${collision.coordinates.y}`}
-            className=""
             style={{
               left: `${collision.coordinates.x + 20}px`,
               top: `${collision.coordinates.y}px`,
@@ -318,12 +278,14 @@ const CollisionMechanism = React.forwardRef<
       </AnimatePresence>
     </>
   );
-});
+}));
 
 CollisionMechanism.displayName = "CollisionMechanism";
 
-const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
-  const spans = Array.from({ length: 20 }, (_, index) => ({
+// Optimize explosion animation
+function Explosion({ ...props }: React.HTMLProps<HTMLDivElement>) {
+  // Reduce number of particles for better performance
+  const spans = Array.from({ length: 10 }, (_, index) => ({
     id: index,
     initialX: 0,
     initialY: 0,
@@ -355,9 +317,9 @@ const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
       ))}
     </div>
   );
-};
+}
 
-const GridLineVertical = ({
+const GridLineVertical = memo(({
   className,
   offset,
 }: {
@@ -373,7 +335,7 @@ const GridLineVertical = ({
           "--height": "5px",
           "--width": "1px",
           "--fade-stop": "90%",
-          "--offset": offset || "150px", //-100px if you want to keep the line inside
+          "--offset": offset || "150px",
           "--color-dark": "rgba(255, 255, 255, 0.3)",
           maskComposite: "exclude",
         } as React.CSSProperties
@@ -390,4 +352,4 @@ const GridLineVertical = ({
       )}
     ></div>
   );
-};
+});

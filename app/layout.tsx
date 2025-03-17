@@ -9,12 +9,15 @@ import { Analytics } from "@vercel/analytics/react"
 import { AptabaseProvider } from '@aptabase/react';
 import Script from 'next/script';
 
-// Optimize font loading
+// Optimize font loading with size-adjust to reduce CLS
 const inter = Inter({ 
   subsets: ["latin"],
   display: 'swap',
   preload: true,
   fallback: ['system-ui', 'sans-serif'],
+  variable: '--font-inter',
+  adjustFontFallback: true,
+  weight: ['400', '500', '600', '700'], // Only load the weights you need
 });
 
 export const metadata: Metadata = {
@@ -110,7 +113,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.variable}>
       <head>
         {/* Google site verification */}
         <meta name="google-site-verification" content="7k2zEjTjgiSSaP2wa8rWewLum8fGA8opfHVg0eD7Hic" />
@@ -123,14 +126,21 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
+        {/* Preload critical assets */}
+        <link rel="preload" as="image" href="/favicon.ico" />
+        
         {/* Favicon tags for better cross-platform support */}
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        
+        {/* Add meta theme color for mobile browsers */}
+        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
       </head>
       <body
-        className={cn("antialiased dark:bg-black bg-white", inter.className)}
+        className={cn("antialiased font-sans dark:bg-black bg-white", inter.className)}
       >
         <AptabaseProvider appKey="A-EU-2774041550">
           <ThemeProvider
@@ -147,9 +157,10 @@ export default function RootLayout({
             </main>
             <Footer />
           </ThemeProvider>
-          {/* Load analytics with strategy="lazyOnload" to improve performance */}
+          
+          {/* Load analytics with strategy="afterInteractive" for better performance */}
           <Script
-            strategy="lazyOnload"
+            strategy="afterInteractive"
             id="analytics-script"
           >
             {`
@@ -157,7 +168,9 @@ export default function RootLayout({
               console.log('Analytics loaded');
             `}
           </Script>
-          <Analytics/>
+          
+          {/* Load Vercel Analytics with lower priority */}
+          <Analytics />
         </AptabaseProvider>
       </body>
     </html>
