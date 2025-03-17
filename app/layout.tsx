@@ -7,8 +7,15 @@ import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/context/providers";
 import { Analytics } from "@vercel/analytics/react"
 import { AptabaseProvider } from '@aptabase/react';
+import Script from 'next/script';
 
-const inter = Inter({ subsets: ["latin"] });
+// Optimize font loading
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'sans-serif'],
+});
 
 export const metadata: Metadata = {
   title: {
@@ -135,6 +142,16 @@ export default function RootLayout({
             </main>
             <Footer />
           </ThemeProvider>
+          {/* Load analytics with strategy="lazyOnload" to improve performance */}
+          <Script
+            strategy="lazyOnload"
+            id="analytics-script"
+          >
+            {`
+              // Initialize analytics scripts here
+              console.log('Analytics loaded');
+            `}
+          </Script>
           <Analytics/>
         </AptabaseProvider>
       </body>

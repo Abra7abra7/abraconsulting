@@ -1,11 +1,21 @@
-import { CTA } from "@/components/cta";
-import { Features } from "@/components/features";
-import { Footer } from "@/components/footer";
-import { Hero } from "@/components/hero";
-import { OrganizationJsonLd, ServiceJsonLd, LocalBusinessJsonLd } from "@/components/json-ld";
 import { Pricing } from "@/components/pricing";
 import { Metadata } from "next";
 import Image from "next/image";
+import { OrganizationJsonLd, ServiceJsonLd, LocalBusinessJsonLd } from "@/components/json-ld";
+import dynamic from "next/dynamic";
+
+// Dynamic imports for heavy components
+const DynamicHero = dynamic(() => import("@/components/hero").then(mod => ({ default: mod.Hero })), {
+  ssr: true
+});
+
+const DynamicFeatures = dynamic(() => import("@/components/features").then(mod => ({ default: mod.Features })), {
+  ssr: true
+});
+
+const DynamicCTA = dynamic(() => import("@/components/cta").then(mod => ({ default: mod.CTA })), {
+  ssr: false
+});
 
 export const metadata: Metadata = {
   title: "ABRA AI - AI Autonomous Business & MCP Protocol Solutions",
@@ -28,11 +38,11 @@ export default function Home() {
       <ServiceJsonLd />
       <LocalBusinessJsonLd />
       <main className="">
-        <Hero />
+        <DynamicHero />
        
-        <Features />
+        <DynamicFeatures />
         <Pricing />
-        <CTA />
+        <DynamicCTA />
       </main>
     </>
   );
