@@ -9,14 +9,14 @@ const CalendarPlaceholder = () => (
   </div>
 );
 
-// Lazy load the Cal.com embed component
-const CalendarComponent = dynamic(
-  () => import('@calcom/embed-react'),
-  {
-    ssr: false,
-    loading: () => <CalendarPlaceholder />
-  }
-);
+// We don't need this anymore since we're using the embed script approach
+// const CalendarComponent = dynamic(
+//   () => import('@calcom/embed-react'),
+//   {
+//     ssr: false,
+//     loading: () => <CalendarPlaceholder />
+//   }
+// );
 
 export function OptimizedCalEmbed() {
   const [showEmbed, setShowEmbed] = useState(false);
@@ -47,6 +47,21 @@ export function OptimizedCalEmbed() {
     };
   }, []);
   
+  // Use Cal.com's embed script approach instead of the React component
+  useEffect(() => {
+    if (showEmbed) {
+      // Load Cal's embed script
+      const script = document.createElement('script');
+      script.src = 'https://cal.com/embed.js';
+      script.async = true;
+      document.body.appendChild(script);
+      
+      return () => {
+        document.body.removeChild(script);
+      };
+    }
+  }, [showEmbed]);
+  
   return (
     <div id="cal-embed-container" className="w-full h-full">
       {showEmbed ? (
@@ -67,7 +82,6 @@ export function OptimizedCalEmbed() {
       ) : (
         <CalendarPlaceholder />
       )}
-      {showEmbed && <CalendarComponent />}
     </div>
   );
 }
